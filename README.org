@@ -6,7 +6,7 @@ Thus the data is provided via a Nix flake API.
 
 While [[https://github.com/purcell/package-lint/][package-lint]] contains similar data for linting packages, this project serves a different purpose, so there are significant differences between them:
 
-- It collects data about unstable versions (from [[https://github.com/nix-community/emacs-overlay][emacs-overlay]]) as well.
+- It collects data about unstable versions as well.
 - It does not run Emacs, but it checks out the source repository of Emacs and find all source files matching a particular pattern. The result is based on file names, and not on provided features.
 - Rather than storing diffs between versions, it keeps a complete snapshot of data from each version. If you are interested, you can use your favourite diff program to compare changes.
 
