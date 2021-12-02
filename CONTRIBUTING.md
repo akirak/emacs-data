@@ -20,14 +20,3 @@ in the repository and run `nix flake lock`:
 ```
 
 Commit both `flake.nix` and `flake.lock` but not anything else and create a PR.
-
-### Update one of the development branches
-
-To update the data on one of the development branches, update its corresponding
-flake input:
-
-```sh
-nix flake lock --update-input emacs-git
-```
-
-Commit a new version of `flake.lock` to the repository and create a PR.
