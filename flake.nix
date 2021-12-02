@@ -1,25 +1,6 @@
 {
   description = "Generate data about Emacs releases";
 
-  inputs.flake-utils = {
-    url = "github:numtide/flake-utils";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
-  inputs.pre-commit-hooks = {
-    url = "github:cachix/pre-commit-hooks.nix";
-    inputs.flake-utils.follows = "flake-utils";
-  };
-
-  # Unstable Emacs versions
-  inputs.emacs-git = {
-    url = "github:emacs-mirror/emacs/master";
-    flake = false;
-  };
-  inputs.emacs-28 = {
-    url = "github:emacs-mirror/emacs/emacs-28";
-    flake = false;
-  };
-
   outputs =
     inputs @ { self
     , nixpkgs
@@ -69,4 +50,24 @@
           inherit (checks.pre-commit-check) shellHook;
         };
       });
+
+  inputs.flake-utils = {
+    url = "github:numtide/flake-utils";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+  inputs.pre-commit-hooks = {
+    url = "github:cachix/pre-commit-hooks.nix";
+    inputs.flake-utils.follows = "flake-utils";
+  };
+
+  # Unstable Emacs versions
+  inputs.emacs-git = {
+    url = "github:emacs-mirror/emacs/master";
+    flake = false;
+  };
+  inputs.emacs-28 = {
+    url = "github:emacs-mirror/emacs/emacs-28";
+    flake = false;
+  };
+
 }
