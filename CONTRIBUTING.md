@@ -9,14 +9,17 @@ the repository. Please commit only a lock file to the repository.
 
 ### Add a new release
 
-To add support for a new release version of Emacs, use `add-release.sh` script
-contained in this repository:
+To add support for a new release version of Emacs, add an input to `flake.nix`
+in the repository and run `nix flake lock`:
 
-```sh
-./add-release.sh 28.1
+```nix
+  inputs."emacs-27.2" = {
+    url = "github:emacs-mirror/emacs/emacs-27.2";
+    flake = false;
+  };
 ```
 
-Commit a new version of `releases.lock` to the repository and create a PR.
+Commit both `flake.nix` and `flake.lock` but not anything else and create a PR.
 
 ### Update one of the development branches
 
