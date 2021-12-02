@@ -13,4 +13,27 @@ While [[https://github.com/purcell/package-lint/][package-lint]] contains simila
 Because it only collects data from static source trees, it runs very fast!
 Also, it is easy to add support for new versions.
 ** Usage
-The Nix flake API is available in =lib=.
+Add an input to your =flake.nix= as a *non-flake*:
+
+#+begin_src nix
+    inputs.emacs-data = {
+      url = "github:akirak/emacs-data";
+      flake = false;
+    };
+  #+end_src
+
+Then import =default.nix=, from which you can use the API:
+
+#+begin_src nix
+  let
+    emacs-data = import inputs.emacs-data;
+  in
+    # Return a list of supported Emacs versions
+    emacs-data.emacsVersions
+    # Return a list of built-in libraries
+    emacs-data.getBuiltinLibraryList "27.2"
+    # Same as above, but returns null if the version is unavailable
+    emacs-data.getBuiltinLibraryListSafe "27.2"
+#+end_src
+
+Alternatively, the Nix flake API is available in =lib=, but it will import a lot of inputs into your =flake.lock=, which may not be what you want. I will recommend the classic, non-flake importing describe above.
