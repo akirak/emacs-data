@@ -36,4 +36,4 @@ Then import =default.nix=, from which you can use the API:
     emacs-data.getBuiltinLibraryListSafe "27.2"
 #+end_src
 
-Alternatively, a Nix flake API is available in =lib=, but it will import a lot of inputs into your =flake.lock=, which may not be what you want. I will recommend the classic, non-flake importing describe above.
+Alternatively, a Nix flake API is available under =lib=, but it will import a lot of inputs into your =flake.lock=, which may not be what you want. I will recommend the classic, non-flake importing describe above.
