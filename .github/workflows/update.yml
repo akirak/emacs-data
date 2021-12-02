@@ -1,0 +1,29 @@
+name: Update
+
+on:
+  schedule:
+    - cron: '0 5 * * 6'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2.4.0
+    - uses: cachix/install-nix-action@v15
+      with:
+        install_url: https://nixos-nix-install-tests.cachix.org/serve/vij683ly7sl95nnhb67bdjjfabclr85m/install
+        install_options: '--tarball-url-prefix https://nixos-nix-install-tests.cachix.org/serve'
+    - run: nix flake lock --update-input emacs-git
+    - run: nix flake lock --update-input emacs-28
+    - run: nix run .#generate
+    - run: git add data
+    - run: git diff-index --exit-code --name-status HEAD data
+      id: diff
+    - uses: peter-evans/create-pull-request@v3
+      if: ${{ steps.diff.outcome == 'failure' }}
+      with:
+        commit-message: 'Regenerate data with new development version(s)'
+        base: master
+        title: 'chore: Update data'
+        branch: create-pull-request/update
+        labels: bot,update
