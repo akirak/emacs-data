@@ -1,0 +1,27 @@
+name: Generate data on PR
+
+on:
+  pull_request:
+    files:
+    - flake.lock
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2.4.0
+    - uses: cachix/install-nix-action@v16
+      with:
+        install_url: https://nixos-nix-install-tests.cachix.org/serve/vij683ly7sl95nnhb67bdjjfabclr85m/install
+        install_options: '--tarball-url-prefix https://nixos-nix-install-tests.cachix.org/serve'
+    - run: nix run .#generate
+    - run: git add data
+    - run: git diff-index --exit-code --name-status HEAD data
+      id: diff
+    - name: Commit the new data
+      if: ${{ steps.diff.outcome == 'failure' }}
+      run: |
+        git config --local user.email 6270544+github-actions[bot]@users.noreply.github.com
+        git config --local user.name github-actions[bot]
+        git commit -a -m 'Generate new data'
+        git push
