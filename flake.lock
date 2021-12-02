@@ -1,5 +1,90 @@
 {
   "nodes": {
+    "emacs-26.1": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1527266287,
+        "narHash": "sha256-NF88gSiQIjdiFtDMirZOGIvGtvETXVFq7hFyb6l8BVo=",
+        "owner": "emacs-mirror",
+        "repo": "emacs",
+        "rev": "07f8f9bc5a51f5aa94eb099f3e15fbe0c20ea1ea",
+        "type": "github"
+      },
+      "original": {
+        "owner": "emacs-mirror",
+        "ref": "emacs-26.1",
+        "repo": "emacs",
+        "type": "github"
+      }
+    },
+    "emacs-26.2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1555012786,
+        "narHash": "sha256-EmveGvoSBNVagjOgTyiKlpASougViF9i38UK1tRPlnI=",
+        "owner": "emacs-mirror",
+        "repo": "emacs",
+        "rev": "fd1b34bfba8f3f6298df47c8e10b61530426f749",
+        "type": "github"
+      },
+      "original": {
+        "owner": "emacs-mirror",
+        "ref": "emacs-26.2",
+        "repo": "emacs",
+        "type": "github"
+      }
+    },
+    "emacs-26.3": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1566427213,
+        "narHash": "sha256-pRkH9sebx+cW0OSlgDvRwewtByBHsbxQD7Jeo1/7umg=",
+        "owner": "emacs-mirror",
+        "repo": "emacs",
+        "rev": "96dd0196c28bc36779584e47fffcca433c9309cd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "emacs-mirror",
+        "ref": "emacs-26.3",
+        "repo": "emacs",
+        "type": "github"
+      }
+    },
+    "emacs-27.1": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1596571524,
+        "narHash": "sha256-eo5aY+KYGJdgZbSTrINBx8QtELs5htWqH6o7k5yeoMQ=",
+        "owner": "emacs-mirror",
+        "repo": "emacs",
+        "rev": "86d8d76aa36037184db0b2897c434cdaab1a9ae8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "emacs-mirror",
+        "ref": "emacs-27.1",
+        "repo": "emacs",
+        "type": "github"
+      }
+    },
+    "emacs-27.2": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1616138214,
+        "narHash": "sha256-GqkXX1RH98xGHP9If2kMsswEyOdy8OUSPEXOZG+nsVw=",
+        "owner": "emacs-mirror",
+        "repo": "emacs",
+        "rev": "deef5efafb70f4b171265b896505b92b6eef24e6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "emacs-mirror",
+        "ref": "emacs-27.2",
+        "repo": "emacs",
+        "type": "github"
+      }
+    },
     "emacs-28": {
       "flake": false,
       "locked": {
@@ -88,6 +173,11 @@
     },
     "root": {
       "inputs": {
+        "emacs-26.1": "emacs-26.1",
+        "emacs-26.2": "emacs-26.2",
+        "emacs-26.3": "emacs-26.3",
+        "emacs-27.1": "emacs-27.1",
+        "emacs-27.2": "emacs-27.2",
         "emacs-28": "emacs-28",
         "emacs-git": "emacs-git",
         "flake-utils": "flake-utils",

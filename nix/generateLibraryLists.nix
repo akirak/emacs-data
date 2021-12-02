@@ -21,10 +21,7 @@ let
     (filter (source: !hasAttr source.rev existingHashes))
     (map (source: {
       name = source.rev;
-      value = generateLibraryListFromSource
-        (if source ? outPath
-        then source
-        else fetchTree source);
+      value = generateLibraryListFromSource source;
     }))
     listToAttrs
   ];

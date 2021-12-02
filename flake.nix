@@ -2,8 +2,7 @@
   description = "Generate data about Emacs releases";
 
   outputs =
-    inputs @ { self
-    , nixpkgs
+    inputs @ { nixpkgs
     , flake-utils
     , pre-commit-hooks
     , ...
@@ -21,18 +20,22 @@
       (system:
       let
         pkgs = import nixpkgs { inherit system; };
-
-        releaseSources = import ./nix/readReleaseLockFile.nix (self.outPath + "/releases.lock");
-
-        unstableSources = pkgs.lib.attrVals [ "emacs-git" "emacs-28" ] inputs;
-
-        sources = builtins.attrValues releaseSources ++ unstableSources;
       in
       rec {
         apps.generate = flake-utils.lib.mkApp {
           drv = pkgs.callPackage ./nix/generateLibraryLists.nix { } {
-            inherit sources;
             logFile = ./log.txt;
+            sources = pkgs.lib.attrVals
+              [
+                "emacs-git"
+                "emacs-28"
+                "emacs-26.1"
+                "emacs-26.2"
+                "emacs-26.3"
+                "emacs-27.1"
+                "emacs-27.2"
+              ]
+              inputs;
           };
         };
         defaultApp = apps.generate;
@@ -70,4 +73,25 @@
     flake = false;
   };
 
+  # Stable Emacs releases
+  inputs."emacs-26.1" = {
+    url = "github:emacs-mirror/emacs/emacs-26.1";
+    flake = false;
+  };
+  inputs."emacs-26.2" = {
+    url = "github:emacs-mirror/emacs/emacs-26.2";
+    flake = false;
+  };
+  inputs."emacs-26.3" = {
+    url = "github:emacs-mirror/emacs/emacs-26.3";
+    flake = false;
+  };
+  inputs."emacs-27.1" = {
+    url = "github:emacs-mirror/emacs/emacs-27.1";
+    flake = false;
+  };
+  inputs."emacs-27.2" = {
+    url = "github:emacs-mirror/emacs/emacs-27.2";
+    flake = false;
+  };
 }
